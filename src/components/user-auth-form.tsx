@@ -16,10 +16,13 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Icons } from "./icons";
 
 const UserAuthForm = () => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
   const form = useForm<AuthSchema>({
     resolver: zodResolver(authSchema),
     defaultValues: {
@@ -29,6 +32,7 @@ const UserAuthForm = () => {
   });
 
   async function onSubmit(values: AuthSchema) {
+    setLoading(true);
     const { email, password } = values;
     try {
       const res = await signIn("credentials", {
@@ -45,6 +49,8 @@ const UserAuthForm = () => {
       }
     } catch (err) {
       setError("An error occured");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -78,7 +84,10 @@ const UserAuthForm = () => {
           )}
         />
         {error ? <FormMessage>{error}</FormMessage> : null}
-        <Button type="submit" className="w-full">
+        <Button disabled={loading} type="submit" className="w-full">
+          {loading && (
+            <Icons.loaderCircle className="mr-2 w-4 h-4 animate-spin" />
+          )}
           Log in
         </Button>
       </form>

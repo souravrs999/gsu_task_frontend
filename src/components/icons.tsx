@@ -3,6 +3,7 @@ import {
   Clock,
   Kanban,
   List,
+  LoaderCircle,
   LogOut,
   Pen,
   Plus,
@@ -25,4 +26,5 @@ export const Icons = {
   x: X,
   clock: Clock,
   check: Check,
+  loaderCircle: LoaderCircle,
 };
