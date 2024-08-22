@@ -44,7 +44,11 @@ const DeleteTask: FC<DeleteTaskProps> = ({ task }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="icon" className="rounded-full w-8 h-8 hover:bg-red-500">
+        <Button
+          data-testid="delete-task-btn"
+          size="icon"
+          className="rounded-full w-8 h-8 hover:bg-red-500"
+        >
           <Icons.trash className="w-4 h-4 fill-primary-foreground" />
         </Button>
       </AlertDialogTrigger>

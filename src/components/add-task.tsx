@@ -64,7 +64,11 @@ const AddTask = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="icon" className="h-12 w-12 rounded-full">
+        <Button
+          data-testid="add-task-btn"
+          size="icon"
+          className="h-12 w-12 rounded-full"
+        >
           <Icons.plus />
         </Button>
       </DialogTrigger>
